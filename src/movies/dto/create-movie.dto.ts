@@ -1,13 +1,19 @@
-import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
+import { PickType } from '@nestjs/swagger';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { Movie } from '../entities/movie.entity';
 
-export class CreateMovieDTO {
+export class CreateMovieDTO extends PickType(Movie, [
+  'title',
+  'year',
+  'geners',
+] as const) {
   @IsString()
-  readonly title: string;
+  title: string;
 
   @IsNumber()
-  readonly year: number;
+  year: number;
 
   @IsString()
   @IsOptional()
-  readonly geners: string;
+  geners: string;
 }

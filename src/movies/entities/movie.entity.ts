@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   CreateDateColumn,
@@ -12,21 +13,30 @@ import {
   name: 'MOVIE_TB',
 })
 export class Movie {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty()
   @Column()
   title: string;
 
+  @ApiProperty()
   @Column()
   year: number;
 
+  @ApiProperty({
+    required: false,
+    nullable: true,
+  })
   @Column({ nullable: true })
   geners: string;
 
+  @ApiProperty()
   @CreateDateColumn()
   created_date?: Date;
 
+  @ApiProperty()
   @UpdateDateColumn()
   updated_date?: Date;
 }
